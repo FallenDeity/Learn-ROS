@@ -74,8 +74,8 @@ class Talker(rospy.Publisher):
 
 
 if __name__ == "__main__":
-    publisher = Talker(rate=5, dataclass=msg.Int16)
+    publisher = Talker(rate=5, dataclass=msg.String)
     try:
-        publisher.send_messge(message=5)
+        publisher.send_messge(message="Hello World!")
     except rospy.ROSInterruptException:
         ...

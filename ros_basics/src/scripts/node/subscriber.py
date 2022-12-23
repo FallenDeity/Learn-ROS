@@ -61,7 +61,7 @@ class Listener(rospy.Subscriber):
 
 
 if __name__ == "__main__":
-    Listener(dataclass=msg.Int16).listen()
+    Listener(dataclass=msg.String).listen()
 
     # @Listener.listen_deco(callback_args=("Hello", "World", "!"))
     # def reply(data: String, *args: tuple[t.Any, ...]) -> None:
