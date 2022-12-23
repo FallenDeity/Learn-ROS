@@ -204,6 +204,14 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(publisher src/cscripts/node/publisher.cpp)
+target_link_libraries(publisher ${catkin_LIBRARIES})
+
+add_executable(subscriber src/cscripts/node/subscriber.cpp)
+target_link_libraries(subscriber ${catkin_LIBRARIES})
+
+
 catkin_install_python(PROGRAMS src/scripts/node/subscriber.py src/scripts/node/publisher.py src/scripts/turtle/simulate.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

@@ -1,3 +1,3 @@
-from .simulate import Turtle
+from .simulate import TurtleSimulator
 
-__all__: tuple[str, ...] = ("Turtle",)
+__all__: tuple[str, ...] = ("TurtleSimulator",)
