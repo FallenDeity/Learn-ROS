@@ -22,11 +22,11 @@ jobs:
           pip install black isort mypy ruff
       - name: Format with isort and black
         run: |
-          poetry run isort ./
-          poetry run black ./
+          isort ./
+          black ./
       - name: Type check with mypy
         run: |
-          poetry run mypy . --ignore-missing-imports
+          mypy . --ignore-missing-imports
       - name: Linting with ruff
         run: |
-          poetry run ruff ./
+          ruff ./
