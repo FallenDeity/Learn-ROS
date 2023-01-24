@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   roscpp
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -49,15 +50,13 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   Message1.msg
-#   Message2.msg
+#   Num.msg
 # )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
 #   FILES
-#   Service1.srv
-#   Service2.srv
+#   AddTwoInts.srv
 # )
 
 ## Generate actions in the 'action' folder
@@ -68,10 +67,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -212,6 +211,6 @@ add_executable(subscriber src/cscripts/node/subscriber.cpp)
 target_link_libraries(subscriber ${catkin_LIBRARIES})
 
 
-catkin_install_python(PROGRAMS src/scripts/node/subscriber.py src/scripts/node/publisher.py src/scripts/turtle/simulate.py
+catkin_install_python(PROGRAMS src/scripts/node/subscriber.py src/scripts/node/publisher.py src/scripts/turtle/simulate.py src/scripts/server/server.py src/scripts/server/client.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
