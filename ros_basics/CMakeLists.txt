@@ -48,16 +48,16 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Num.msg
-# )
+ add_message_files(
+   FILES
+   Num.msg
+ )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   AddTwoInts.srv
-# )
+ add_service_files(
+   FILES
+   AddTwoInts.srv
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -101,12 +101,7 @@ generate_messages(
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES ros_basics
-#  CATKIN_DEPENDS rospy std_msgs
-#  DEPENDS system_lib
-)
+catkin_package(CATKIN_DEPENDS message_runtime)
 
 ###########
 ## Build ##
@@ -210,7 +205,18 @@ target_link_libraries(publisher ${catkin_LIBRARIES})
 add_executable(subscriber src/cscripts/node/subscriber.cpp)
 target_link_libraries(subscriber ${catkin_LIBRARIES})
 
+add_executable(server src/cscripts/server/server.cpp)
+target_link_libraries(server ${catkin_LIBRARIES})
+add_dependencies(server ros_basics_gencpp)
 
-catkin_install_python(PROGRAMS src/scripts/node/subscriber.py src/scripts/node/publisher.py src/scripts/turtle/simulate.py src/scripts/server/server.py src/scripts/server/client.py
+
+add_executable(client src/cscripts/server/client.cpp)
+target_link_libraries(client ${catkin_LIBRARIES})
+add_dependencies(client ros_basics_gencpp)
+
+
+catkin_install_python(PROGRAMS src/scripts/node/subscriber.py
+        src/scripts/node/publisher.py src/scripts/turtle/simulate.py
+        src/scripts/server/server.py src/scripts/server/client.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
